@@ -50,7 +50,7 @@ song_list, time_list = get_uploads_list(uploads_file)
 searches = base.Searches() 	#sets Searches class from base.py file
 searches.search_init()
 
-i = 2396 #not starting from 0 because we did some of them already.
+i = 0 #can change this value start from a higher number in the uploads list if you want to restart the process after a crash.
 got_song = []
 
 for song in song_list[i:]:   
