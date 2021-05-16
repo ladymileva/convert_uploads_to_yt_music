@@ -1,7 +1,7 @@
 # convert_uploads_to_yt_music
 Adds contents of "Uploads" library to "Youtube music" library for customers who migrated from Google Play. Requires Google chrome browser and python 3 with selenium WebDriver for chrome browser (https://chromedriver.chromium.org/downloads).  Tested in Windows 10.    
 
-credit to github user ath67 (on whose code this was adapted from)
+acknowledgement to github user ath67 (whose code this was adapted from)
 
 Users must have a valid Youtube music account.
 
