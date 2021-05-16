@@ -22,7 +22,7 @@ var i = 0; <br />
   setTimeout(scroll, 900) <br />
   })() <br />
   
-  c) Ctrl-A to select all songs on the page.  Paste output into plain text file and save file, for example, as "youtube_music_uploads.txt"  <br />
+  c) Ctrl-A to select all songs on the page.  Copy and Paste output into plain text file and save file, for example, as "youtube_music_uploads.txt"  <br />
   
 2) Create a file called config.json in the same folder as main.py and base.py.  Its contents should be as follows: <br />
 { <br />
