@@ -5,10 +5,12 @@ acknowledgement to github user ath67 (whose code this was adapted from)
 
 Users must have a valid Youtube music account.
 
-This python script automates addition of songs from Uploads library to Youtube library.  It performs a search for song title and artist, and from the top five song results will add the song to Youtube library which has the closest duration to the "Uploads" file.  It is not failsafe but records a file with all the matches so that manual corrections can be done if necessary.    
+This python script automates addition of songs from Uploads library to Youtube library.  It performs a search for song title and artist, and from the top five song results will add the song to Youtube library which has the closest duration to the "Uploads" file.  It is not failsafe but records a file with all the matches so that manual corrections can be done if necessary.  
+
+Instructions: 
 
 1) Create a text file with all songs in "Uploads" library. <br />  
-  a) Navigate to Uploads page <br />
+  a) Navigate to Uploads page, https://music.youtube.com/library/uploaded_songs<br />
   b) Scroll manually to the bottom of the Uploads page or enter the following command in chrome Developer Tools:  <br />
 
 var i = 0; <br />
@@ -29,12 +31,14 @@ var i = 0; <br />
     "filename" : "C:\\\path\\\to\\\uploads\\\file\\\youtube_music_uploads.txt" <br />
 } <br />
 
+The double slash is essential.
+
 3) Start an instance of the Google Chrome debugger on port 1111: <br />
 "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=1111 --user-data-dir="C:\selenium\AutomationProfile"
-Ensure that if you navigate to music.youtube.com you are logged in automatically.  This debugger step is necessary because Youtube music rejects login attempts by selenium.  
+Ensure that if you navigate to music.youtube.com you are logged in automatically.  This debugger step is necessary because Youtube music rejects login attempts by selenium.  The location of the AutomationProfile folder may vary depending on where selenium was installed.
 
-4) Navigate to locate of main.py in terminal and execute the python script: python main.py
+4) Navigate to location of main.py in terminal (windows command prompt) and execute the python script: python main.py
 5) Progress will be recorded in "matches_file.txt", listing the song title and artist from the Uploads library, and the corresponding song title and artist that was added to your youtube library.  
 
 Troubleshooting: 
-Occasionally the program crashes due to unexpected organization of the search results page.  In this case, manually add the song which caused the error to youtube library, then restart the python script after changing the starting value of "i" in main.py to the next in value the list so that you don't have to start over from 0.  
+Occasionally the program crashes due to unexpected organization of the search results page.  In this case, manually add the song which caused the error to youtube library, then restart the python script after changing the starting value of "i" in main.py to the next value in the list so that you don't have to start over from 0.  
