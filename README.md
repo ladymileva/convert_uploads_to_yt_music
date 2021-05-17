@@ -5,7 +5,7 @@ acknowledgement to github user ath67 (whose code this was adapted from)
 
 Users must have a valid Youtube music account.
 
-This python script automates addition of songs from Uploads library to Youtube library.  It performs a search for song title and artist, and from the top five song results will add the song to Youtube library which has the closest duration.  It is not failsafe but records a file with all the matches so that manual corrections can be done if necessary.    
+This python script automates addition of songs from Uploads library to Youtube library.  It performs a search for song title and artist, and from the top five song results will add the song to Youtube library which has the closest duration to the "Uploads" file.  It is not failsafe but records a file with all the matches so that manual corrections can be done if necessary.    
 
 1) Create a text file with all songs in "Uploads" library. <br />  
   a) Navigate to Uploads page <br />
