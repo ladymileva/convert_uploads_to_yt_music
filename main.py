@@ -53,7 +53,7 @@ searches = base.Searches() 	#sets Searches class from base.py file
 #searches.login()
 searches.search_init()
 
-i = 2569 #not starting from 0 because we did some of them already.
+i = 0 #can change value from 0 if you want to start farther down the list
 got_song = []
 
 for song in song_list[i:]:   
