@@ -11,8 +11,16 @@ from datetime import datetime
 
 from time import sleep
 import os, shutil, re
+from fpdf import FPDF
+from PIL import Image
+
+
+
 
 class Searches: 
+	
+	
+		
 	
 	def search_init(self):
 		read_url = 'music.youtube.com'
@@ -21,7 +29,7 @@ class Searches:
 		chrome_options.add_argument("--start-fullscreen")
 		#chrome_options.add_argument("--incognito")
 		chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:1111")
-				
+		
 		self.driver = webdriver.Chrome(chrome_options=chrome_options)
 		self.wait = WebDriverWait(self.driver,100)
 		options = {
@@ -32,7 +40,7 @@ class Searches:
     
 		#go to youtube music
 		self.driver.get('https://music.youtube.com/')
-			
+		
 		
 		sleep(5)
 		
@@ -40,6 +48,7 @@ class Searches:
 	def search_song(self, song):
 		self.driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-nav-bar/div[2]/ytmusic-search-box/div/div[1]').click()
 		sleep(5)
+		#song_search_element.send_keys(Keys.Home)
 		self.driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-nav-bar/div[2]/ytmusic-search-box/div/div[1]/input').clear()
 		self.driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-nav-bar/div[2]/ytmusic-search-box/div/div[1]/input').send_keys(song)
 		self.driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/ytmusic-nav-bar/div[2]/ytmusic-search-box/div/div[1]/input').send_keys(Keys.RETURN)
@@ -49,7 +58,8 @@ class Searches:
 		#Click on "Songs" 
 		self.driver.find_element_by_xpath('/html/body/ytmusic-app/ytmusic-app-layout/div[3]/ytmusic-search-page/ytmusic-tabbed-search-results-renderer/div[2]/ytmusic-section-list-renderer/div[1]/ytmusic-chip-cloud-renderer/div/ytmusic-chip-cloud-chip-renderer[1]/a/yt-formatted-string').click()
 		sleep(10)
-				
+		
+		
 	
 	def match_time(self, time_string) :	
 		print(*(time_string.split(" ")), sep = ",")
@@ -57,7 +67,8 @@ class Searches:
 		
 		dur_dif = []
 		for i in range(5) :
-						
+			
+			
 			for j in range(1,5) :
 				element_string = '/html/body/ytmusic-app/ytmusic-app-layout/div[3]/ytmusic-search-page/ytmusic-section-list-renderer/div[2]/ytmusic-shelf-renderer/div[2]/ytmusic-responsive-list-item-renderer[' + str(i+1) + ']/div[2]/div[3]/yt-formatted-string/span[' + str(j) + ']'
 				#print('The element string is: ' + element_string)
@@ -77,6 +88,11 @@ class Searches:
 					#print('Not working') 
 					continue
 					
+						
+			
+			
+			
+		#sleep(100000)
 		#find the one that is closest to 0, return the index.  
 		return dur_dif.index(min(dur_dif))
 		
@@ -89,12 +105,14 @@ class Searches:
 		got_song = got_song_title + " " + got_song_artist
 		print('I matched: ' + got_song)
 		
-			
+		
+		
 		#right click anywhere within the song
 		song_area = self.driver.find_element_by_xpath(got_song_title_xpath)
 		sleep(5)
 		ActionChains(self.driver).context_click(song_area).perform()
 				
+		
 		add_to_library_option = '/html/body/ytmusic-app/ytmusic-popup-container/tp-yt-iron-dropdown/div/ytmusic-menu-popup-renderer/tp-yt-paper-listbox/ytmusic-toggle-menu-service-item-renderer[1]'
 		
 		add_to_library_item = self.driver.find_element_by_xpath(add_to_library_option)
@@ -110,13 +128,17 @@ class Searches:
 		
 		if 'Add' in add_to_library_item.text :
 			self.driver.find_element_by_xpath(add_to_library_option).click()
+			
 			print('I added the song to the library.')
+			#else :
+			#	print('The song was not added to the library.')
 		elif 'Remove' in add_to_library_item.text : 
 			print('This song is already in your library!')
 		else :
 			print('Something went wrong.. increase sleep timers')
 				
 		return got_song
+		
 		
 		
 

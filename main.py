@@ -10,7 +10,8 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotInterac
 import selenium.webdriver.common.by as By
 from time import sleep
 
-start_time = datetime.datetime.now()    #log initial time
+start_time = datetime.datetime.now()    #log inicial time
+
 
 def get_uploads_list(uploads_file):
 	song_list = []
@@ -35,11 +36,12 @@ def get_uploads_list(uploads_file):
 					
 			ctr += 1	
 	
-	#debug: check that the file loaded OK
-	#for x in range(len(song_list)):
-		#print(song_list[x] + " " + time_list[x])
-
+	
 	return song_list, time_list			
+	
+	
+			
+
 
 #reads the config.json    
 json_file = open('./config.json')
@@ -48,9 +50,10 @@ uploads_file = config["filename"]
 song_list, time_list = get_uploads_list(uploads_file)
 
 searches = base.Searches() 	#sets Searches class from base.py file
+#searches.login()
 searches.search_init()
 
-i = 0 #can change this value start from a higher number in the uploads list if you want to restart the process after a crash.
+i = 2569 #not starting from 0 because we did some of them already.
 got_song = []
 
 for song in song_list[i:]:   
@@ -64,4 +67,6 @@ for song in song_list[i:]:
 		f.write('i = ' + str(i) + ':' + song + ' --> ' + gs + '\n')
 		f.close()
 	i += 1
+	
+
 	
